@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/12c14aa889.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">Link</a>
+        </li>
+        <li ngbDropdown class="nav-item dropdown" *ngIf="isAuthenticated()">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">ADMIN</a>
+          <ul ngbDropdownMenu class="dropdown-menu">
+            <li ngbDropdownItem *ngIf="isAdmin()"><a class="dropdown-item" routerLink="/adminCategories">Gestion des categories</a></li>
+            <li ngbDropdownItem *ngIf="isUser()"><a class="dropdown-item" routerLink="/adminProducts" >Gestion des produits</a></li>
+            <li ngbDropdownItem *ngIf="isAdmin()"><a class="dropdown-item" routerLink="/adminUsers" >Gestion des utilisateurs</a></li>
+          </ul>
+        </li>
+
+
+
+        <li class="nav-item position-absolute top-0 end-0 " *ngIf="!isAuthenticated()">
+          <a class="nav-link" href="javascript:void(0)" routerLink="/login"  [style.background-color]="'green'" >Login</a>
+        </li>
+        <li class="nav-item position-absolute top-0 end-0" *ngIf="isAuthenticated()" >
+          <a class="nav-link " href="javascript:void(0)" (click)="logout()" [style.background-color]="'red'" >Log Out</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+is authenticated:  {{ isAuthenticated() }}
+<!--is user: {{ isUser() }}-->
+<!--is admin: {{ isAdmin() }}-->
+
+
+<div class="row mt-4">
+  <div class="col-md-2">
+    <app-categories></app-categories>
+  </div>
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+

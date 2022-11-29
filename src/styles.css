@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+/*add bootstrap icons https://stackoverflow.com/questions/60365440/how-to-programmatically-use-bootstrap-icons-in-an-angular-project */
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+/* npm i font-awesome */
+
+@import '~font-awesome/css/font-awesome.css';

@@ -1,0 +1,13 @@
+<ul class="list-group" *ngIf="categories">
+<!--categories._embedded.categories: in rest api=> show inspecter element->network -> categories->show link   -->
+
+  <li *ngFor="let c of categories._embedded.categories"
+      [ngClass]="currentCategory &&
+  currentCategory._links.self == c._links.self ? 'active':''"
+      class="list-group-item">
+    <a style="cursor: pointer" (click)="onGetProducts(c)">{{c.name}}</a>
+  </li>
+</ul>
+
+
+

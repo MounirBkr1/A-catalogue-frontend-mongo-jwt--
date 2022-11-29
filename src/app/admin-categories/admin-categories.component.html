@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+<div class="card col-md-10">
+  <div class="card-header">Gestion des categories</div>
+  <div class="card-body">
+
+<!--ADD NEW CATEGORIE-->
+      <button class="btn btn-success" (click)="onNewCategories()">
+        <span class="	glyphicon glyphicon-plus"></span> new
+      </button>
+    <p></p>
+    <div *ngIf="mode=='new-categorie'" class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="onSaveCategorie(f.value)">
+        <div class="form-group">
+          <label class="control-label">Name</label>
+          <input type="text" name="name" ngModel class="form-control">
+          <p></p>
+          <button class="btn btn-success" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+
+<!--    EDIT CATEGORIE-->
+    <div *ngIf="mode=='edit-categorie'" class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="onUpdateCategorie(f.value)">
+        <div class="form-group">
+          <label class="control-label">Name</label>
+          <input type="text" name="name" ngModel class="form-control" [(ngModel)]="currentCategorie.name">
+          <p></p>
+          <button class="btn btn-success" type="submit">Update</button>
+        </div>
+      </form>
+
+    </div>
+
+
+    <div *ngIf="mode=='list'">
+      <!--    ngIf: pour eviter l ereur au cas ou il ya pas de categories-->
+      <table class="table" *ngIf="categories">
+        <tr>
+          <th>NAme</th>
+        </tr>
+        <tr *ngFor="let c of categories._embedded.categories">
+          <td>{{c.name}}</td>
+          <td>
+            <p></p>
+
+              <i class="bi bi-x-square-fill" style="color: red" (click)="onDeleteCat(c)"></i>
+
+          </td>
+          <td>
+            <p></p>
+
+              <i class="bi bi-pencil-square" style="color: darkgreen" (click)="onEditCat(c)"></i>
+
+          </td>
+
+        </tr>
+      </table>
+    </div>
+
+
+  </div>
+</div>
+</div>
